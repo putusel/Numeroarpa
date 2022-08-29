@@ -1,10 +1,38 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, View, Button, TextInput, Text, Alert } from 'react-native';
 
 export default function App() {
+
+  const [text, setText] = useState('');
+  const [text2, setData] = useState('');
+  var counter = 0;
+  var randomNumber = Math.floor(Math.random() * 100) + 1;
+  
+  const buttonPressed = () => { 
+    counter = counter + 1;
+    if (Number(text) < randomNumber) {
+      <Text>Your guess + text + ' is too low'</Text>
+    } else if (Number(text) > randomNumber) {
+      <Text>Your guess + text + ' is too high'</Text>
+    } else {
+      Alert.alert('You guessed the number in ' + counter + ' guesses'); 
+    }
+  };
+    
+    
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+      <Text style={styles.text}>Guess a number between 1-100</Text>
+      <TextInput 
+          style={styles.input} 
+          keyboardType={'numeric'}
+          onChangeText={text => setText(text)} value={text}
+        />
+        <View style={{ flexDirection: 'row', justifyContent: 'space-around', marginTop: 10, marginBottom: 10 }}>
+          <Button onPress={buttonPressed} title="MAKE A GUESS" />
+          
+        </View>
       <StatusBar style="auto" />
     </View>
   );
@@ -16,5 +44,14 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  text : {
+    fontSize: 20,
+  },
+  input : {
+    width: 65, 
+    borderColor: 'gray', 
+    borderWidth: 1,
+    fontSize: 20,
   },
 });
