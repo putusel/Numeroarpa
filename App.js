@@ -5,16 +5,17 @@ import { StyleSheet, View, Button, TextInput, Text, Alert } from 'react-native';
 export default function App() {
 
   const [text, setText] = useState('');
-  const [text2, setData] = useState('');
+  const [result, setData] = useState('');
   var counter = 0;
   var randomNumber = Math.floor(Math.random() * 100) + 1;
   
   const buttonPressed = () => { 
     counter = counter + 1;
-    if (Number(text) < randomNumber) {
-      <Text>Your guess + text + ' is too low'</Text>
-    } else if (Number(text) > randomNumber) {
-      <Text>Your guess + text + ' is too high'</Text>
+    if (Number(text) > randomNumber) {
+      const result = (`Your guess ${text} is too high`);
+      setData(result);
+    } else if (Number(text) < randomNumber) {
+      const result = (`Your guess ${text} is too low`);
     } else {
       Alert.alert('You guessed the number in ' + counter + ' guesses'); 
     }
@@ -31,8 +32,8 @@ export default function App() {
         />
         <View style={{ flexDirection: 'row', justifyContent: 'space-around', marginTop: 10, marginBottom: 10 }}>
           <Button onPress={buttonPressed} title="MAKE A GUESS" />
-          
         </View>
+        <Text style={styles.text}>{result} </Text>
       <StatusBar style="auto" />
     </View>
   );
@@ -54,4 +55,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     fontSize: 20,
   },
+  text : {
+    fontSize: 20,
+  }
 });
