@@ -6,18 +6,23 @@ export default function App() {
 
   const [text, setText] = useState('');
   const [result, setData] = useState('');
-  var counter = 0;
-  var randomNumber = Math.floor(Math.random() * 100) + 1;
+  const [count, setCount] = useState(1);
+  const [randomNumber] = useState(Math.floor(Math.random() * 100) + 1);
   
+  
+
   const buttonPressed = () => { 
-    counter = counter + 1;
+    
+    setCount(count+1)
     if (Number(text) > randomNumber) {
       const result = (`Your guess ${text} is too high`);
       setData(result);
     } else if (Number(text) < randomNumber) {
       const result = (`Your guess ${text} is too low`);
+      setData(result);
     } else {
-      Alert.alert('You guessed the number in ' + counter + ' guesses'); 
+      Alert.alert('You guessed the number in ' + count + ' guesses'); 
+      
     }
   };
     
